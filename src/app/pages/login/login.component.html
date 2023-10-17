@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="login-container flex justify-content-center align-items-center">
+  <form [formGroup]="loginForm">
+    <p-card header="Login" class="login-card">
+      <div class="field">
+        <label for="email">Email</label>
+
+        <input
+          type="text"
+          pInputText
+          formControlName="email"
+          class="w-full"
+          name="email"
+          placeholder="example@gmail.com"
+        />
+
+        <small
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="email.errors?.['required']">Email is required</div>
+          <div *ngIf="email.errors?.['email']">Email should be valid</div>
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+
+        <input
+          type="password"
+          pInputText
+          formControlName="password"
+          class="w-full"
+          name="password"
+          placeholder="Type your password"
+        />
+
+        <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block p-error"
+        >
+          <div>Password must be between 5 to 15 characters</div>
+        </small>
+      </div>
+
+      <p-button
+        label="SIGN IN"
+        styleClass="w-full"
+        [disabled]="loginForm.invalid"
+      ></p-button>
+
+      <div class="mt-2">Not a member? <a routerLink="/signup">SignUp</a></div>
+    </p-card>
+  </form>
+</div>
