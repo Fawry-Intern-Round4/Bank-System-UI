@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UserLogin, userAuthResponse } from 'src/app/interfaces/auth';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent {
     ],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   get email() {
     return this.loginForm.controls['email'];
@@ -23,5 +25,13 @@ export class LoginComponent {
 
   get password() {
     return this.loginForm.controls['password'];
+  }
+
+  loginUser() {
+    this.authService
+      .loginUser(this.loginForm.value as UserLogin)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }

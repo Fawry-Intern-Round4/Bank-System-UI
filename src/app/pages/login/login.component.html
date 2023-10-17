@@ -1,5 +1,5 @@
 <div class="login-container flex justify-content-center align-items-center">
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
     <p-card header="Login" class="login-card">
       <div class="field">
         <label for="email">Email</label>
@@ -46,6 +46,7 @@
         label="SIGN IN"
         styleClass="w-full"
         [disabled]="loginForm.invalid"
+        type="submit"
       ></p-button>
 
       <div class="mt-2">Not a member? <a routerLink="/signup">SignUp</a></div>
