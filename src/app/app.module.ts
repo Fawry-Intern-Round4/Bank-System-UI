@@ -8,6 +8,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { WellcomComponent } from './pages/wellcom/wellcom.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
+    SliderComponent,
+    WellcomComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

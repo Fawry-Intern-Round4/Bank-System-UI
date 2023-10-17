@@ -1,0 +1,51 @@
+.slider {
+  margin-bottom: 40px;
+  .slide {
+    position: relative;
+    width: 100%;
+    &-bg {
+      height: 35rem; //35*14px
+      position: relative;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        height: 100%;
+        width: 100%;
+        display: block;
+        background-image: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+    }
+    &-pane {
+      position: absolute;
+      top: 5rem;
+      left: 5rem;
+      color: white;
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .meta {
+        font-size: 1.2rem;
+      }
+      .description {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+.pi {
+  color: orange;
+  margin-right: 10px;
+}
