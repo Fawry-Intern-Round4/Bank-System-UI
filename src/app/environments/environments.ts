@@ -11,5 +11,5 @@ export const getToken = () => {
 };
 
 export const logOut = () => {
-  sessionStorage.clear;
+  sessionStorage.clear();
 };
