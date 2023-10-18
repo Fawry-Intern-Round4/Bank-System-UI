@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 
 export const myHost = () => {
-  return 'http://localhost:8080';
+  return 'https://bank-api-service-iiyh.onrender.com';
 };
 
 export const saveToken = (token: String) => {
