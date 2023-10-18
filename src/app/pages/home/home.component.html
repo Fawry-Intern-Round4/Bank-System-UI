@@ -1,4 +1,11 @@
 <div>
+  <div class="welcome-banner">
+    <h1>Welcome to [Sakr Bank] - {{ user.firstName }}!</h1>
+    <p>
+      We're so glad you're here. At Sakr Bank, we believe that everyone should
+      have access to the tools and resources they need to succeed.
+    </p>
+  </div>
   <div class="cards grid">
     <div class="card" *ngFor="let accountCard of accountCards">
       <p-card

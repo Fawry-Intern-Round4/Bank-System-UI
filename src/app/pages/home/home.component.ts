@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UserCard } from 'src/app/interfaces/account';
+import { User } from 'src/app/interfaces/user';
 import { AccountService } from 'src/app/services/accout/accout.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -11,20 +13,34 @@ import { AccountService } from 'src/app/services/accout/accout.service';
 })
 export class HomeComponent implements OnInit {
   accountCards: UserCard[] = [];
+  user!: User;
 
   constructor(
     private accountService: AccountService,
+    private userService: UserService,
     private router: Router,
     private messageService: MessageService
   ) {}
   ngOnInit(): void {
     this.getMyAccountCards();
+    this.getUser();
   }
 
   getMyAccountCards() {
     this.accountService.getUserCards().subscribe(
       (response) => {
         this.accountCards = response.payload;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getUser() {
+    this.userService.getUser().subscribe(
+      (response) => {
+        this.user = response.payload;
         console.log(this.accountCards);
       },
       (error) => {
