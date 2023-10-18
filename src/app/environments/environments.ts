@@ -1,3 +1,5 @@
+import { HttpHeaders } from '@angular/common/http';
+
 export const myHost = () => {
   return 'http://localhost:8080';
 };

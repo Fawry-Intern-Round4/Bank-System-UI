@@ -12,7 +12,7 @@
       <div class="description mb-4">
         Delivering value to our clients, our community and our shareholders
       </div>
-      <div class="meta">
+      <div class="meta mb-8">
         <div class="rating mb-1">
           <i class="pi pi-star-fill"></i>
           <span>Rating - </span>
@@ -29,6 +29,15 @@
           <span>since - 2023</span>
         </div>
       </div>
+
+      <p-button
+        label="Join Us"
+        [text]="true"
+        [raised]="true"
+        [plain]="true"
+        [style]="{ color: 'orange', width: '150px' }"
+        (onClick)="onClickJoinUs()"
+      ></p-button>
     </div>
   </div>
 </div>

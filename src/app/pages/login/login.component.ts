@@ -5,7 +5,7 @@ import { MessageService } from 'primeng/api';
 import { saveToken } from 'src/app/environments/environments';
 import { UserLogin, userAuthResponse } from 'src/app/interfaces/auth';
 import { ResponseModel } from 'src/app/interfaces/resposeModel';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -39,8 +39,7 @@ export class LoginComponent {
   loginUser() {
     this.authService.loginUser(this.loginForm.value as UserLogin).subscribe(
       (response) => {
-        const userResponse = response as ResponseModel<userAuthResponse>;
-        saveToken(userResponse.payload.token);
+        saveToken(response.payload.token);
 
         this.messageService.add({
           severity: 'success',

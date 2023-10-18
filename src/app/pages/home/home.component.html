@@ -1,1 +1,72 @@
-<p>home working</p>
+<div>
+  <div class="cards grid">
+    <div class="card" *ngFor="let accountCard of accountCards">
+      <p-card
+        header="Card No: {{ accountCard.id }}"
+        subheader="Card Info"
+        [style]="{ width: '360px' }"
+      >
+        <div class="meta">
+          <div class="mb-2">
+            <i class="mr-2 pi pi-star-fill"></i>
+            <span>Card Number: {{ accountCard.cardNumber }}</span>
+          </div>
+
+          <div class="mb-2">
+            <i class="mr-2 pi pi-star-fill"></i>
+            <span>CVV: {{ accountCard.cvv }}</span>
+          </div>
+
+          <div class="mb-2">
+            <i class="mr-2 pi pi-star-fill"></i>
+            <span>Balance: {{ accountCard.balance }}$</span>
+          </div>
+
+          <div class="mb-2">
+            <i class="mr-2 pi pi-star-fill"></i>
+            <span
+              >Status: {{ accountCard.status ? "Active" : "Inactive" }}</span
+            >
+          </div>
+
+          <div>
+            <i class="mr-2 pi pi-star-fill"></i>
+            <span
+              >Created At:
+              {{ accountCard.createdAt | date : "mediumDate" }}</span
+            >
+          </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+          <p-button
+            label="{{ accountCard.status ? 'Deactivate' : 'Activate' }}"
+            icon="pi {{
+              accountCard.status ? 'pi-times-circle' : 'pi-check-circle'
+            }}"
+            severity="{{ accountCard.status ? 'danger' : 'success' }}"
+            (click)="togleUserCardStatus(accountCard.id, accountCard.status)"
+          ></p-button>
+          <p-button
+            label="History"
+            icon="pi pi-database"
+            styleClass="p-button-secondary"
+            [style]="{ 'margin-left': '.5em' }"
+            (click)="getMyAccountCardHistory()"
+          ></p-button>
+        </ng-template>
+      </p-card>
+    </div>
+
+    <div class="card">
+      <p-card
+        id="new-card"
+        [style]="{ width: '360px', cursor: 'pointer' }"
+        (click)="CreateNewAccountCard()"
+      >
+        <i class="pi pi-plus"></i>
+        <p>Create New Card</p>
+      </p-card>
+    </div>
+  </div>
+</div>
