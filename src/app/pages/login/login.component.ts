@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { saveToken } from 'src/app/environments/environments';
 import { UserLogin, userAuthResponse } from 'src/app/interfaces/auth';
+import { ResponseModel } from 'src/app/interfaces/resposeModel';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -17,7 +21,12 @@ export class LoginComponent {
     ],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   get email() {
     return this.loginForm.controls['email'];
@@ -28,10 +37,26 @@ export class LoginComponent {
   }
 
   loginUser() {
-    this.authService
-      .loginUser(this.loginForm.value as UserLogin)
-      .subscribe((response) => {
-        console.log(response);
-      });
+    this.authService.loginUser(this.loginForm.value as UserLogin).subscribe(
+      (response) => {
+        const userResponse = response as ResponseModel<userAuthResponse>;
+        saveToken(userResponse.payload.token);
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Login Successfully',
+        });
+
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Something went wrong',
+        });
+      }
+    );
   }
 }
