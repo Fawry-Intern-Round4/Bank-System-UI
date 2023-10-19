@@ -35,7 +35,7 @@ export class AccountService {
   }
 
   deactiveUserAccountCard(cardId: Number): any {
-    return this.http.post<any>(
+    return this.http.put<any>(
       `${this.baseUrl}/account/${cardId}?deactivate`,
       {},
       {
@@ -45,7 +45,7 @@ export class AccountService {
   }
 
   activeUserAccountCard(cardId: Number): any {
-    return this.http.post<any>(
+    return this.http.put<any>(
       `${this.baseUrl}/account/${cardId}?activate`,
       {},
       {

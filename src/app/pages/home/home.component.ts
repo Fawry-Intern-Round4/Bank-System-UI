@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { logOut } from 'src/app/environments/environments';
 import { UserCard } from 'src/app/interfaces/account';
 import { User } from 'src/app/interfaces/user';
 import { AccountService } from 'src/app/services/accout/accout.service';
@@ -13,7 +14,14 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HomeComponent implements OnInit {
   accountCards: UserCard[] = [];
-  user!: User;
+  user: User = {
+    firstName: '',
+    lastName: '',
+    address: '',
+    email: '',
+    phoneNumber: '',
+    id: 0,
+  };
 
   constructor(
     private accountService: AccountService,
@@ -33,6 +41,9 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+
+        logOut();
+        this.router.navigate(['/login']);
       }
     );
   }
@@ -45,6 +56,9 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+
+        logOut();
+        this.router.navigate(['/login']);
       }
     );
   }
@@ -56,6 +70,9 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+
+        logOut();
+        this.router.navigate(['/login']);
       }
     );
   }
@@ -71,6 +88,9 @@ export class HomeComponent implements OnInit {
       },
       (error: any) => {
         console.log(error);
+
+        logOut();
+        this.router.navigate(['/login']);
       }
     );
   }
@@ -82,6 +102,9 @@ export class HomeComponent implements OnInit {
       },
       (error: any) => {
         console.log(error);
+
+        logOut();
+        this.router.navigate(['/login']);
       }
     );
   }
