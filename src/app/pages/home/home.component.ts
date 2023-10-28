@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { HistoryComponent } from 'src/app/components/history/history.component';
 import { logOut } from 'src/app/environments/environments';
 import { UserCard } from 'src/app/interfaces/account';
 import { User } from 'src/app/interfaces/user';
@@ -23,11 +25,14 @@ export class HomeComponent implements OnInit {
     id: 0,
   };
 
+  ref: DynamicDialogRef | undefined;
+
   constructor(
     private accountService: AccountService,
     private userService: UserService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public dialogService: DialogService
   ) {}
   ngOnInit(): void {
     this.getMyAccountCards();
@@ -116,11 +121,30 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getMyAccountCardHistory() {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Not Implemnted Yet',
+  getMyAccountCardHistory(id: Number) {
+    this.ref = this.dialogService.open(HistoryComponent, {
+      data: {
+        id: id,
+      },
+      header: 'Card History',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
     });
+
+    this.ref.onMaximize.subscribe((value) => {
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Maximized',
+        detail: `maximized: ${value.maximized}`,
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.ref) {
+      this.ref.close();
+    }
   }
 }

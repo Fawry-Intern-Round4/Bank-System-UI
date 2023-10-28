@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getToken, myHost } from 'src/app/environments/environments';
 import { UserCard } from 'src/app/interfaces/account';
+import { AccountHistory } from 'src/app/interfaces/accountHistory';
 import { ResponseModel } from 'src/app/interfaces/resposeModel';
 
 @Injectable({
@@ -48,6 +49,17 @@ export class AccountService {
     return this.http.put<any>(
       `${this.baseUrl}/account/${cardId}?activate`,
       {},
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  getMyAccountCardHistory(
+    cardId: Number
+  ): Observable<ResponseModel<AccountHistory[]>> {
+    return this.http.get<ResponseModel<AccountHistory[]>>(
+      `${this.baseUrl}/account/${cardId}`,
       {
         headers: this.headers,
       }

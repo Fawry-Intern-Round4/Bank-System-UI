@@ -18,6 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { HistoryComponent } from './components/history/history.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import { MessageService } from 'primeng/api';
     SignupComponent,
     SliderComponent,
     WellcomComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +45,10 @@ import { MessageService } from 'primeng/api';
     HttpClientModule,
     ToastModule,
     BrowserAnimationsModule,
+    DynamicDialogModule,
+    TableModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
