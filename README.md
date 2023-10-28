@@ -1,4 +1,7 @@
-# BankSystemUI
+## To Run App [https://ahmedsakr-bank.netlify.app/](https://ahmedsakr-bank.netlify.app/)
+
+
+### BankSystemUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
 
